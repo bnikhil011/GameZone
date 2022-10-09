@@ -8,23 +8,30 @@
 		<version>2.7.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.gameZome.discoveryService</groupId>
-	<artifactId>descoveryService</artifactId>
+	<groupId>com.gameZome.dataHandler</groupId>
+	<artifactId>datahandler</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>descoveryService</name>
+	<name>datahandler</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>2021.0.4</spring-cloud.version>
 	</properties>
 	<dependencies>
+	
+		<dependency>
+			<groupId>com.gamezone.models</groupId>
+			<artifactId>gamezone_models</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 
 		<dependency>
@@ -32,15 +39,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
-		<dependency>
-			<groupId>com.gamezone.models</groupId>
-			<artifactId>gamezone_models</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		
 	</dependencies>
-	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -50,6 +49,8 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			
+			
 		</dependencies>
 	</dependencyManagement>
 
