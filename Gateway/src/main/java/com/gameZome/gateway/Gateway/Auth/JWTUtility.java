@@ -21,22 +21,22 @@ public class JWTUtility {
 	
 	private static final String screat_key ="base_24_encr";
 
-	private JwtBuilder generateToken(UserDetails details)
+	private JwtBuilder generateToken(String  userName)
 	{
 		Map<String ,Object> claims = new HashMap<>();
 		
-		return Jwts.builder().setClaims(claims).setSubject(details.getUsername())
+		return Jwts.builder().setClaims(claims).setSubject(userName)
 				.setIssuedAt(new Date(System.currentTimeMillis())).setExpiration(new Date(System.currentTimeMillis()+(1000*1000)))
 				.signWith(SignatureAlgorithm.HS512, screat_key);
 				
 	}
-	public String getUserToken(UserDetails details)
+	public String getUserToken(String userName)
 	{
-		return generateToken(details).compact();
+		return generateToken(userName).compact();
 	}
-	public String getServiceToken(UserDetails details)
+	public String getServiceToken(String serviceName)
 	{
-		return generateToken(details).setSubject("MiccroserviceCall").compact();
+		return generateToken(serviceName).setSubject("MiccroserviceCall").compact();
 	}
 	
 	private String getSubjectFromTokenAfterCheck(String token )
@@ -55,18 +55,16 @@ public class JWTUtility {
 	public boolean isvalidMicroserviceToken(String token)
 	{
 		String subject = getSubjectFromTokenAfterCheck(token);
-		String foundMicroservice = Arrays.stream(MicroserviceAndUserDetails.authorizedservices).filter(i ->subject.equals(i)).findAny().get();
-		
-		return foundMicroservice!=null ;
+	
+		return subject.equals("MS") ;
 		
 	}
 	
 	public boolean isvalidUserToken(String token )
 	{
 		String subject = getSubjectFromTokenAfterCheck(token);
-		String foundUser = Arrays.stream(MicroserviceAndUserDetails.authorizedsusers).filter(i ->subject.equals(i)).findAny().get();
 		
-		return foundUser!=null;
+		return subject.equals("ADMIN");
 		
 	}
 	

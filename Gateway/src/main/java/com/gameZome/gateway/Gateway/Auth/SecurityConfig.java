@@ -15,6 +15,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	UserDetailsService userDeatilService;
 	
+	@Autowired
+	AuthFilter authFilter;
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		// TODO Auto-generated method stub
