@@ -12,5 +12,9 @@ To have it simple No database is being used Data Handlere Service will be having
 One more Model Project is being created so that all the modeals can be easily transefered easily between microservices
 -> Edurica Service Discovery is being used to discover the service and we r using clienst side Service Discovery which is being abstracted using LoadBalancer, IN future we will try to replace it with Zookeeper Service Discovery 
 
+There are two more helper services 
+1) Authentication and Authorization Services name as SecurityCeck (used to authenticate and authorize uszer and helps in inter service communication)
+2) Descovery Service (helps to load balancing and Discovering service by name )
+
 -------------------------------------------------------THANK YOU-------------------------------------------------------
  
