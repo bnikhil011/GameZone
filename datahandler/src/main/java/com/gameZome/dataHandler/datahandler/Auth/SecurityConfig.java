@@ -1,6 +1,7 @@
-package com.gameZome.gateway.Gateway.Auth;
+package com.gameZome.dataHandler.datahandler.Auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.client.RestTemplate;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
@@ -41,8 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		// TODO Auto-generated method stub
 		 http.csrf().disable()
-		 .authorizeRequests().antMatchers("/authenticate").permitAll()
-		 .anyRequest().authenticated()
+		 .authorizeRequests().anyRequest().authenticated()
 		 .and()
 		 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 		 .and()
@@ -55,8 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	public AuthenticationManager getManager() throws Exception
 	{
 		return super.authenticationManagerBean();
+	
 	}
-
 	
 
 

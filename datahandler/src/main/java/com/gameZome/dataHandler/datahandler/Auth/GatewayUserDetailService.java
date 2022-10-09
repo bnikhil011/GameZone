@@ -1,4 +1,4 @@
-package com.gameZome.gateway.Gateway.Auth;
+package com.gameZome.dataHandler.datahandler.Auth;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,12 +6,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
-import com.netflix.discovery.provider.Serializer;
-
 @Service
 public class GatewayUserDetailService implements UserDetailsService{
 
+	// will not be used ever as filter will block this flow
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		if(username.equals("ADMIN"))

@@ -1,4 +1,4 @@
-package com.gameZome.gateway.Gateway.Auth;
+package com.gameZome.dataHandler.datahandler.Auth;
 
 import java.io.IOException;
 
@@ -15,15 +15,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 @Component
 public class AuthFilter extends OncePerRequestFilter{
 
 	@Autowired
-	JWTUtility jwtUtility;
-	@Autowired
-	UserDetailsService userDetailService;
+	RestTemplate restTemplate;
+	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
@@ -34,10 +34,11 @@ public class AuthFilter extends OncePerRequestFilter{
 		if(jwtToken!=null && jwtToken.startsWith("Bearer "))
 		{
 			final String token = jwtToken.substring(7);
-			
-			if(jwtUtility.isvalidUserToken(token) || jwtUtility.isvalidMicroserviceToken(token))
+		//need to do changes 	
+			//restTemplate.getForObject("", Response.class);
+			if(true)
 			{
-				UserDetails details = User.builder().username("Authenticated").password("Authenticated").build();
+				UserDetails details = User.builder().username("ADMIN").password("ADMIN").build();
 				UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(details, null, details.getAuthorities());
 				
 				authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
