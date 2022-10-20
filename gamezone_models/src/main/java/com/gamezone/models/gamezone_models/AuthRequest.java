@@ -3,19 +3,20 @@ package com.gamezone.models.gamezone_models;
 public class AuthRequest {
 	
 	private String username;
-	private String passowrd;
+	private String password;
 	public String getUsername() {
 		return username;
 	}
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getPassowrd() {
-		return passowrd;
+	public String getPassword() {
+		return password;
 	}
-	public void setPassowrd(String passowrd) {
-		this.passowrd = passowrd;
+	public void setPassword(String password) {
+		this.password = password;
 	}
+	
 	
 	
 

@@ -31,22 +31,24 @@ public class AuthController {
 	ResponseEntity<AuthResponse> authenticateUser(@RequestBody AuthRequest request)
 	{
 		final String token ;
-		
+		System.out.println("Reached controller");
 		try {
-			authManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassowrd()));
-			
+			authManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+			if(request.getUsername().equals("ADMIN"))
+				token = jwtUtility.getUserToken(request.getUsername()); 
+			else
+				token = jwtUtility.getServiceToken(request.getUsername());
+			return new ResponseEntity<AuthResponse>(new AuthResponse(token),HttpStatus.ACCEPTED);
 		}
 		catch(BadCredentialsException ex )
 		{
 			ex.printStackTrace();
 		}
 		
+		return new ResponseEntity<AuthResponse>(new AuthResponse(null, "Wrong Credentials"),HttpStatus.BAD_REQUEST);
 		
-		if(request.getUsername().equals("ADMIN"))
-			token = jwtUtility.getUserToken(request.getUsername()); 
-		else
-			token = jwtUtility.getServiceToken(request.getUsername());
-		return new ResponseEntity<AuthResponse>(new AuthResponse(token),HttpStatus.ACCEPTED);
+		
+		
 	}
 	
 

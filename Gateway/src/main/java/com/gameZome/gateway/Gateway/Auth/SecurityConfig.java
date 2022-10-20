@@ -40,6 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// TODO Auto-generated method stub
+		System.out.println("Security Config Called"); 
 		 http.csrf().disable()
 		 .authorizeRequests().antMatchers("/authenticate").permitAll()
 		 .anyRequest().authenticated()

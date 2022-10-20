@@ -29,6 +29,8 @@ public class AuthFilter extends OncePerRequestFilter{
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		System.out.println("Filter Called-------"+request.getRequestURL() );
+		
 		final String jwtToken = request.getHeader("Authorization");
 		
 		if(jwtToken!=null && jwtToken.startsWith("Bearer "))
